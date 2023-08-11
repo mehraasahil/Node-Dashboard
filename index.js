@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('./db/User');
 const cors = require('cors');
+const Product = require('./db/Product');
 
 require ('./db/config')
 const app = express()
@@ -35,6 +36,15 @@ app.post('/login',async (req,resp)=>{
 
   
 } 
+
+})
+
+
+app.post('/add-product',async(req,resp)=>{
+  let product = new Product(req.body);
+  let result = await product.save()
+  resp.send(result)
+  console.log(result)
 
 })
 
